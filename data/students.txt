@@ -1,0 +1,3 @@
+{"rollno": "1", "name": "Amit", "course": "MCA", "year": "1", "section": "A", "dob": "27-09-2002", "promise": "Will always bring chocolates"}
+{"rollno": "2", "name": "Sara", "course": "MCA", "year": "2", "section": "B", "dob": "15-08-2001", "promise": "Will share notes"}
+{"rollno": "3", "name": "John", "course": "MCA", "year": "1", "section": "C", "dob": "27-09-2000", "promise": "Will help with assignments"}
