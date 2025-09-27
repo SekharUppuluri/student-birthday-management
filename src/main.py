@@ -12,6 +12,8 @@ if not os.path.exists(DATA_DIR) :
    
 def register_student():
    """ Register a new student and save to file with validations """
+   print()
+   print("\n --- Welcome to Registration Section --- \n")
    student = {}
    # --- Roll Number ---
    while True :
@@ -59,7 +61,7 @@ def register_student():
    # --- Section ---
    while True :
       section = input("Enter Section : ").strip().upper()
-      if len(section) == 1 and  section.isalpha():
+      if section :
          student["section"] = section
          break 
       else :
@@ -79,7 +81,7 @@ def register_student():
    student["promise"] = input("Enter Promise Distribution note : ").strip()
    
    # Save student record to file
-   confirm = input("Save this Student (y/n)").strip().lower()
+   confirm = input("Save this Student (y/n) : ").strip().lower()
    if confirm != 'y':
       print("\n ❌ Registration Cancelled.\n")
       return
@@ -89,6 +91,7 @@ def register_student():
    
 def check_birthdays():
    """ Check today's Birthdays """
+   print("\n --- Welcome to Check Birthdays Section --- ")
    if not os.path.exists(STUDENTS_FILE):
       print("\n ⚠️ No student records found.\n")
       return
