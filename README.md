@@ -68,22 +68,24 @@ student-birthday-management/
 ├── .gitignore
 ├── LICENSE
 └── README.md
+``` 
 
-▶️ How to Run
-1️⃣ Clone the repository
-
+## ▶️ How to Run
+### 1️⃣ Clone the repository
+```bash
 git clone https://github.com/your-username/student-birthday-management.git
 cd student-birthday-management
-
-2️⃣ Run the program
-
+```
+### 2️⃣ Run the program
+```bash
 python3 src/main.py
-
-3️⃣ Run tests
-
+```
+### 3️⃣ Run tests
+```bash
 PYTHONPATH=. pytest -v
+```
 
-📸 Screenshots
+## 📸 Screenshots
 ✅ Full CLI DEMO
 ![FULL CLI ](Screenshots/FULL%20CLI.png)
 
@@ -99,7 +101,7 @@ PYTHONPATH=. pytest -v
 🧪 Run Tests with Pytest
 ![Run Tests](Screenshots/Pytest.png)
 
-📜 License  
+### 📜 License  
 This project is licensed under the [MIT License](LICENSE).
 
 🙌 Credits
