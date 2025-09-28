@@ -71,8 +71,21 @@ student-birthday-management/
 ├── LICENSE
 └── README.md
 ``` 
+---
 
-## ▶️ How to Run on Your Machine
+## 📊 Flow Diagram
+
+Here’s a high-level flow of how the system works:
+
+<p align="center">
+  <img src="docs/Project%20Flow%20Chart%20%5Blec%5D.png" alt="System Flow Diagram" width="600">
+</p>
+
+📄 For a deeper dive, check the full [design document](docs/design.md).
+
+---
+
+## 🚀 How to Run on Your Machine
 ### 1️⃣ Clone the repository
 - First, clone the repo to your local machine:
 ```bash
@@ -114,5 +127,26 @@ PYTHONPATH=. pytest -v
 ### 📜 License  
 This project is licensed under the [MIT License](LICENSE).
 
-🙌 Credits
-Developed as a Python mini-project to practice file handling, input validation, and automated testing using pytest.
+---
+
+## 🙌 Credits  
+Developed as a mini Python project to practice managing student records, birthday checks, file handling, input validation, and automated testing with pytest.  
+Future enhancements include building a user-friendly interface using Streamlit or Flask.
+
+---
+
+## 🔗 Live Demo  
+Try it out: [Demo Link](https://your-demo-link.com)  <!-- Replace with actual link or remove if not available -->
+
+---
+
+## 🤝 Contributing  
+ Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
+
+---
+
+## 🧑‍💻 Author  
+**Sekhar Uppuluri**  
+[GitHub: @SekharUppuluri](https://github.com/SekharUppuluri)
+
+
