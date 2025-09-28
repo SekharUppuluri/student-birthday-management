@@ -11,6 +11,8 @@
 A menu-driven Python program to manage student records and check whose birthdays fall on the current date.  
 This project demonstrates Python fundamentals including conditionals, loops, dictionaries, file handling, and modules like `datetime`, `json`, and `os`.
 
+📄 **For an in-depth system design and project details, see the [design document](docs/design.md).**
+
 ---
 
 ## 🚀 Features (Core Requirements ✅)
@@ -70,35 +72,43 @@ student-birthday-management/
 └── README.md
 ``` 
 
-## ▶️ How to Run
+## ▶️ How to Run on Your Machine
 ### 1️⃣ Clone the repository
+- First, clone the repo to your local machine:
 ```bash
-git clone https://github.com/your-username/student-birthday-management.git
+git clone https://github.com/SekharUppuluri/student-birthday-management.git
 cd student-birthday-management
 ```
 ### 2️⃣ Run the program
+- Run the main application:
 ```bash
 python3 src/main.py
 ```
 ### 3️⃣ Run tests
+- To run the tests and verify everything is working:
 ```bash
 PYTHONPATH=. pytest -v
 ```
 
 ## 📸 Screenshots
-✅ Full CLI DEMO
+- ✅ Full CLI DEMO
+
 ![FULL CLI ](Screenshots/FULL%20CLI.png)
 
-📝 Register a Student
+- 📝 Register a Student
+  
 ![Register a Student](Screenshots/Registration_Section.png)
 
-🎉 Check Today’s Birthdays
+- 🎉 Check Today’s Birthdays
+
 ![Check Today’s Birthdays](Screenshots/Check_Birthdays_Section.png)
 
-❌ Exit 
+- ❌ Exit 
+
 ![Exit from program](Screenshots/Exit.png)
 
-🧪 Run Tests with Pytest
+- 🧪 Run Tests with Pytest
+
 ![Run Tests](Screenshots/Pytest.png)
 
 ### 📜 License  
