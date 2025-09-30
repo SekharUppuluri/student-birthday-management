@@ -77,9 +77,52 @@ student-birthday-management/
 
 Here’s a high-level flow of how the system works:
 
-<p align="center">
+```mermaid
+---
+config:
+title: 🎂 Student Birthday Management Flowchart
+---
+
+flowchart TD
+    A(["Start"]) --> B["Display Main Menu"]
+    B --> C["1. Register New Student"] & F["2. Check Today's Birthdays"] & L["3. Exit Application"]
+    C --> D["Input Student Details:<br>Roll No, Name, Course, Year,<br>Section, DOB, Promise"]
+    D --> E["Save Record to students.txt (JSON)"]
+    E --> B
+    F --> G["Compare DOB with Current Date"]
+    G --> H{"Is it a Birthday Today?"}
+    H -- Yes --> I["Display Today's Birthdays"]
+    I --> K["Save to DD-MM-YYYY.txt"]
+    K --> B
+    H -- No --> J["No Birthdays Today"]
+    J --> B
+    L --> M(["End"])
+
+    %% Node styles
+    classDef bigEndStart fill:#f97316,stroke:#ea580c,stroke-width:5px,color:#fff,font-size:30px,font-family:Inter,Arial Black,sans-serif,font-weight:900
+    classDef decision fill:#facc15,stroke:#ca8a04,stroke-width:2px,color:#000,font-family:Inter,sans-serif
+    classDef inputNode fill:#10b981,stroke:#065f46,stroke-width:2px,color:#fff,font-family:Inter,sans-serif
+    classDef process fill:#3b82f6, stroke:#1e40af, stroke-width:2px, color:#fff, font-family:Inter, sans-serif
+
+    %% Apply styles
+    A:::bigEndStart
+    M:::bigEndStart
+    B:::process
+    C:::process
+    F:::process
+    L:::process
+    D:::inputNode
+    E:::process
+    G:::process
+    H:::decision
+    I:::process
+    K:::process
+    J:::process
+
+```
+<!-- <p align="center">
   <img src="docs/Project%20Flow%20Chart%20%5Blec%5D.png" alt="System Flow Diagram" width="600">
-</p>
+</p> -->
 
 📄 For a deeper dive, check the full [design document](docs/design.md).
 
