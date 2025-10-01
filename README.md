@@ -129,22 +129,24 @@ flowchart TD
 ---
 
 ## 🚀 How to Run on Your Machine
-### 1️⃣ Clone the repository
-- First, clone the repo to your local machine:
+
+### 1️⃣ Clone the repository and change directory (same for macOS/Linux and Windows)
 ```bash
 git clone https://github.com/SekharUppuluri/student-birthday-management.git
 cd student-birthday-management
 ```
-### 2️⃣ Run the program
-- Run the main application:
-```bash
-python3 src/main.py
-```
-### 3️⃣ Run tests
-- To run the tests and verify everything is working:
-```bash
-PYTHONPATH=. pytest -v
-```
+
+### 2️⃣ Run the Program and Tests
+
+Follow the steps below to run the program and tests on your system:
+
+|   Step       |      macOS/Linux           |       Windows                   |
+|:------------- |:--------------------------|:-------------------------------|
+| **Run program** | `python3 src/main.py`      | `python src\main.py`             |
+| **Run tests**   | `PYTHONPATH=. pytest -v`   | `set PYTHONPATH=. && pytest -v` |
+
+> **Note**: On **Windows**, make sure to use `src\main.py` with backslashes for the file path.
+
 
 ## 📸 Screenshots
 - ✅ Full CLI DEMO
