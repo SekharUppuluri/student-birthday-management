@@ -87,3 +87,31 @@ def invalid_choice():
     input("Press Enter to continue...")
     print()
     return
+
+# def clear_screen():
+#     """ Clears the console screen """
+#     if os.name == 'nt':  # For Windows
+#         os.system('cls')
+#     else:  # For macOS/Linux
+#         os.system('clear')
+
+def main():
+    while True :
+        print("===== Student Birthday Management System =====")
+        print("1. Register New Student ")
+        print("2. Check Today's Birthdays ")
+        print("3. Exit ")
+        choice = input("Enter your choice (1-3) : ").strip()
+        
+        if choice == "1" :
+            register_student()
+        elif choice == "2" :
+            check_birthdays()
+        elif choice == "3" :
+            exit_program()
+        else :
+            invalid_choice()
+
+
+if __name__ == "__main__" :
+    main()
