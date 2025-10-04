@@ -11,11 +11,9 @@
 A menu-driven Python program to manage student records and check whose birthdays fall on the current date.  
 This project demonstrates Python fundamentals including conditionals, loops, dictionaries, file handling, and modules like `datetime`, `json`, and `os`.
 
-📄 **For an in-depth system design and project details, see the [design document](docs/design.md).**
-
 ---
 
-## 🚀 Features (Core Requirements ✅)
+## 🚀 Features (V1 – CLI)
 
 - Register new student with:
   - Roll No, Name, Course, Year, Section, DOB, Promise Note  
@@ -27,24 +25,10 @@ This project demonstrates Python fundamentals including conditionals, loops, dic
 - Exit the program safely.  
 
 ---
-
-## 🔮 Future Improvements (Scalable 🚀)
-
-- Update or delete student records.  
-- Search students by Roll Number or Name.  
-- Upcoming birthdays reminder (next 7 days).  
-- GUI / Web interface using Streamlit or Flask.  
-- Integration with Google Sheets or a SQL database.  
-- Dockerized deployment for portability.  
-
----
-
 ## 🛠 Tech Stack
 
 - **Language**: Python 3.12.5  
-- **Built-in Libraries**: `json`, `datetime`, `os`  
-- **Testing**: `pytest`
-
+- **Built-in Libraries**: `json`, `datetime`, `os`, `sys`
 ---
 
 ## 📂 Project Structure
@@ -53,20 +37,8 @@ This project demonstrates Python fundamentals including conditionals, loops, dic
 student-birthday-management/
 │
 ├── data/                   # Data files (students.txt, daily birthday lists)
-│   └── .gitkeep
-├── docs/
-│   ├── design.md           # Detailed design document
-│   └── flow_diagram.png    # Workflow diagram
-├── screenshots/            # Screenshots of program execution
-│   ├── Check_Birthdays_Section.png
-│   ├── Exit.png
-│   ├── Registration_Section.png
-│   ├── FULL CLI.png
-│   └── Pytest.png
 ├── src/
-│   └── main.py             # Core Python code
-├── tests/
-│   └── test_app.py         # Automated tests (pytest)
+│   └── birthday_manager.py # Core Python code
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -80,7 +52,7 @@ Here’s a high-level flow of how the system works:
 ```mermaid
 ---
 config:
-title: 🎂 Student Birthday Management Flowchart
+title: 🎂 Student Birthday Management Flowchart (V1 – CLI)
 ---
 
 flowchart TD
@@ -124,7 +96,6 @@ flowchart TD
   <img src="docs/Project%20Flow%20Chart%20%5Blec%5D.png" alt="System Flow Diagram" width="600">
 </p> -->
 
-📄 For a deeper dive, check the full [design document](docs/design.md).
 
 ---
 
@@ -142,13 +113,12 @@ Follow the steps below to run the program and tests on your system:
 
 |   Step       |      macOS/Linux           |       Windows                   |
 |:------------- |:--------------------------|:-------------------------------|
-| **Run program** | `python3 src/main.py`      | `python src\main.py`             |
-| **Run tests**   | `PYTHONPATH=. pytest -v`   | `set PYTHONPATH=. && pytest -v` |
+| **Run program** | `python3 src/birthday_manager.py`      | `python src\birthday_manager.py`             |
 
-> **Note**: On **Windows**, make sure to use `src\main.py` with backslashes for the file path.
+> **Note**: On **Windows**, make sure to use `src\birthday_manager.py` with backslashes for the file path.
 
 
-## 📸 Screenshots
+## 📸 Screenshots (V1)
 - ✅ Full CLI DEMO
 
 ![FULL CLI ](Screenshots/FULL%20CLI.png)
@@ -165,28 +135,9 @@ Follow the steps below to run the program and tests on your system:
 
 ![Exit from program](Screenshots/Exit.png)
 
-- 🧪 Run Tests with Pytest
-
-![Run Tests](Screenshots/Pytest.png)
 
 ### 📜 License  
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🙌 Credits  
-Developed as a mini Python project to practice managing student records, birthday checks, file handling, input validation, and automated testing with pytest.  
-Future enhancements include building a user-friendly interface using Streamlit or Flask.
-
----
-
-## 🔗 Live Demo  
-Try it out: [Demo Link](https://your-demo-link.com)  <!-- Replace with actual link or remove if not available -->
-
----
-
-## 🤝 Contributing  
- Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
 
 ---
 
