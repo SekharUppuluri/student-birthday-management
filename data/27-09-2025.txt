@@ -1,1 +1,0 @@
-{"rollno": "102", "name": "Bob", "course": "IT", "year": 3, "section": "B", "dob": "27-09-2025", "promise": "Be kind"}
