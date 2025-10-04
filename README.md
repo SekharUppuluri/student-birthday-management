@@ -118,7 +118,7 @@ Follow the steps below to run the program and tests on your system:
 > **Note**: On **Windows**, make sure to use `src\birthday_manager.py` with backslashes for the file path.
 
 
-## 📸 Screenshots (Planned in v1.1)
+## 📸 Screenshots (Planned in v1.1.0)
 <!--
 - ✅ Full CLI DEMO
 
@@ -136,9 +136,9 @@ Follow the steps below to run the program and tests on your system:
 
 ![Exit from program](Screenshots/Exit.png)
 -->
-Screenshots will be added in the next minor release (v1.1).
+Screenshots will be added in the next minor release (v1.1.0).
 
-This version (v1.0) focuses on delivering the core CLI functionality.
+This version (v1.0.0) focuses on delivering the core CLI functionality.
 
 
 ### 📜 License  
