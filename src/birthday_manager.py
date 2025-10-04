@@ -42,3 +42,35 @@ def register_student():
    with open(STUDENTS_FILE, "a") as sf :
       sf.write( json.dumps(student) + "\n" )
       print("\n ✅ Student Registered Successfully! \n")
+
+def check_birthdays():
+    """ Check and display students having birthday today """
+    # clear_screen()
+    print("\n --- Birthday Checker Section --- \n")
+    today = datetime.now().strftime("%d-%m")
+    birthday_students = []
+    found = False
+    if os.path.exists(STUDENTS_FILE):
+        with open(STUDENTS_FILE, "r") as sf:
+            for line in sf:
+                student = json.loads(line.strip())
+                dob = student.get("DOB", "")
+                if dob:
+                    dob_date = datetime.strptime(dob, "%d-%m-%Y")
+                    if dob_date.strftime("%d-%m") == today:
+                        birthday_students.append(student)
+            if birthday_students:
+                print(f"🎉 Today's birthdays 🎉 \n")
+                found = True
+                for student in birthday_students:
+                    print(f"Roll No: {student['roll_no']}, Name: {student['Name']}, DOB: {student['DOB']} , Promise: {student['promise']}")   
+
+                filename = os.path.join(DATA_DIR, datetime.now().strftime("%d-%m-%Y") + ".txt")
+                with open(filename, "w") as daily_file:
+                    for student in birthday_students:
+                        daily_file.write(json.dumps(student) + "\n")
+                print(f"\n ✅ Birthday list saved to {filename}\n")       
+    if not found:
+        print("❌ No birthdays today.🎂")
+    input("\nPress Enter to continue...")
+
