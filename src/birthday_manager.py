@@ -31,6 +31,9 @@ def register_student():
    # --- Year ---
    year = input("Enter Year (1/2/3/4) : ").strip()
    student["year"] = year
+   # --- Section ---
+   section = input("Enter Section : ").strip()
+   student["section"] = section
    # --- Date of Birth ---
    dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
    student["DOB"] = dob
