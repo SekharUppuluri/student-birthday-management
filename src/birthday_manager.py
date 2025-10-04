@@ -113,5 +113,6 @@ def main():
             invalid_choice()
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
+    print("\n🚀 Welcome to Student Birthday Management System (CLI Version)\n")
     main()
