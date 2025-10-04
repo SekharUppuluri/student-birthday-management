@@ -74,3 +74,16 @@ def check_birthdays():
         print("❌ No birthdays today.🎂")
     input("\nPress Enter to continue...")
 
+def exit_program():
+    """Gracefully exit the program."""
+    print("\nThank you for using the Student Birthday Management System!")
+    print("Exiting the program. Goodbye! 👋\n")
+    exit(0)
+
+def invalid_choice():
+    """Handle invalid menu choices."""
+    print("\n❌ Invalid choice. Please select a valid option from the menu.\n") 
+    print("Returning to the main menu...\n")
+    input("Press Enter to continue...")
+    print()
+    return
