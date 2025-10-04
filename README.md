@@ -119,6 +119,7 @@ Follow the steps below to run the program and tests on your system:
 
 
 ## 📸 Screenshots (V1)
+<!--
 - ✅ Full CLI DEMO
 
 ![FULL CLI ](Screenshots/FULL%20CLI.png)
@@ -134,6 +135,8 @@ Follow the steps below to run the program and tests on your system:
 - ❌ Exit 
 
 ![Exit from program](Screenshots/Exit.png)
+-->
+> 📸 Screenshots will be added in future versions (v1.x).
 
 
 ### 📜 License  
