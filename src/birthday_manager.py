@@ -26,10 +26,10 @@ def register_student():
    student["roll_no"] = roll_no
    # --- Name ---
    name = input("Enter Name : ").strip()
-   student["Name"] = name 
+   student["name"] = name 
    # --- Course ---
    course = input("Enter Course : ").strip()
-   student["Course"] = course 
+   student["course"] = course 
    # --- Year ---
    year = input("Enter Year (1/2/3/4) : ").strip()
    student["year"] = year
@@ -38,7 +38,7 @@ def register_student():
    student["section"] = section
    # --- Date of Birth ---
    dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
-   student["DOB"] = dob
+   student["dob"] = dob
    # --- promise ---
    promise = input("Enter your promise message : ").strip()
    student["promise"] = promise
@@ -59,7 +59,7 @@ def check_birthdays():
         with open(STUDENTS_FILE, "r") as sf:
             for line in sf:
                 student = json.loads(line.strip())
-                dob = student.get("DOB", "")
+                dob = student.get("dob", "")
                 if dob:
                     dob_date = datetime.strptime(dob, DATE_FORMAT)
                     if dob_date.strftime(SHORT_DATE_FORMAT) == today:
@@ -70,7 +70,7 @@ def check_birthdays():
                 print(f"{'Roll No':<10} {'Name':<20} {'DOB':<15} {'Promise':<30}")
                 print("-" * 75)  # Decorative line for separation
                 for student in birthday_students:
-                    print(f"{student['roll_no']:<10} {student['Name']:<20} {student['DOB']:<15} {student['promise']:<30}")
+                    print(f"{student['roll_no']:<10} {student['name']:<20} {student['dob']:<15} {student['promise']:<30}")
 
                 filename = os.path.join(DATA_DIR, datetime.now().strftime(DATE_FORMAT) + ".txt")
                 with open(filename, "w") as daily_file:
