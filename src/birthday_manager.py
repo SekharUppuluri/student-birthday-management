@@ -61,10 +61,22 @@ def register_student():
     else:
         student["year"] = year
         break
-    
+
    # --- Section ---
-   section = input("Enter Section : ").strip()
-   student["section"] = section
+   while True:
+    section = input("Enter Section (eg; 01/1/CA01): ").strip()
+    if not section:
+        print("❌ Section cannot be empty. Please try again.")
+        continue
+    if not section.isalnum:
+        print("❌ Invalid section. Only letters and numbers allowed (no spaces or symbols).")
+        continue
+    if len(section) > 5 :
+        print("❌ Section name too long. Max 5 characters allowed.")
+        continue
+
+    student["section"] = section.upper()
+    break
    # --- Date of Birth ---
    dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
    student["dob"] = dob
