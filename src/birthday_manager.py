@@ -197,6 +197,27 @@ def check_birthdays():
         print(f"\n{ERROR} ❌ No birthdays found for today ({today}). 🎂")
     input("\nPress Enter to continue...")
 
+def view_students():
+    """ list all registered students"""
+    clear_screen()
+    banner("All Students", Fore.Yellow)
+    print("-" * 50)
+
+    if os.path.exists(STUDENTS_FILE):
+        with open(STUDENTS_FILE,"r") as vsf:
+            students = [json.loads(line.strip()) for line in vsf if line.strip()]
+        if students:
+            print(f"{'Roll No':<10} {'Name':<20} {'Course':<15} {'Year':<6} {'Section':<8} {'DOB':<12}")
+            print("-" * 75)
+            for student in students:
+                print(f"{student['roll_no']:<10} {student['Name']:<20} {student['Course']:<15} {student['Year']:<6} {student['Section']:<8} {student['DOB']:<12}")
+        else:
+            print(ERROR + "❌ No students registered yet.")
+    else :
+        print(ERROR + "❌ No students registered yet./file Not Exists ")
+
+    input(Warning + "\n Press Enter to return to the main menu ...")
+
 def exit_program():
     """Gracefully exit the program."""
     print("\nThank you for using the Student Birthday Management System!")
@@ -222,7 +243,11 @@ def main():
         print("=" * 50 )
         print(INFO + "1. Register New Student")
         print(INFO + "2. Check Today's Birthdays")
-        print(INFO + "3. Exit" + RESET)
+        print(INFO + "3. View All Students")
+        print(INFO + "4. search Student")
+        print(INFO + "5. Edit Student")
+        print(INFO + "6. Delete Student")
+        print(INFO + "7. Exit" + RESET)
         print("=" * 50)
 
         choice = input("Enter your choice (1-3) : ").strip()
@@ -232,6 +257,14 @@ def main():
         elif choice == "2" :
             check_birthdays()
         elif choice == "3" :
+            pass
+        elif choice == "4" :
+            pass
+        elif choice == "5" :
+            pass
+        elif choice == "6" :
+            pass
+        elif choice == "7" :
             exit_program()
         else :
             invalid_choice()
