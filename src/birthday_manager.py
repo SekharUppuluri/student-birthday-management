@@ -8,6 +8,8 @@ import sys
 
 # constants
 DATA_DIR = "data"
+DATE_FORMAT = "%d-%m-%Y"
+SHORT_DATE_FORMAT = "%d-%m"
 
 if not os.path.exists(DATA_DIR):
    os.makedirs(DATA_DIR)
@@ -50,7 +52,7 @@ def check_birthdays():
     """ Check and display students having birthday today """
     # clear_screen()
     print("\n --- Birthday Checker Section --- \n")
-    today = datetime.now().strftime("%d-%m")
+    today = datetime.now().strftime(SHORT_DATE_FORMAT)
     birthday_students = []
     found = False
     if os.path.exists(STUDENTS_FILE):
@@ -59,22 +61,24 @@ def check_birthdays():
                 student = json.loads(line.strip())
                 dob = student.get("DOB", "")
                 if dob:
-                    dob_date = datetime.strptime(dob, "%d-%m-%Y")
-                    if dob_date.strftime("%d-%m") == today:
+                    dob_date = datetime.strptime(dob, DATE_FORMAT)
+                    if dob_date.strftime(SHORT_DATE_FORMAT) == today:
                         birthday_students.append(student)
             if birthday_students:
                 print(f"🎉 Today's birthdays 🎉 \n")
                 found = True
+                print(f"{'Roll No':<10} {'Name':<20} {'DOB':<15} {'Promise':<30}")
+                print("-" * 75)  # Decorative line for separation
                 for student in birthday_students:
-                    print(f"Roll No: {student['roll_no']}, Name: {student['Name']}, DOB: {student['DOB']} , Promise: {student['promise']}")   
+                    print(f"{student['roll_no']:<10} {student['Name']:<20} {student['DOB']:<15} {student['promise']:<30}")
 
-                filename = os.path.join(DATA_DIR, datetime.now().strftime("%d-%m-%Y") + ".txt")
+                filename = os.path.join(DATA_DIR, datetime.now().strftime(DATE_FORMAT) + ".txt")
                 with open(filename, "w") as daily_file:
                     for student in birthday_students:
                         daily_file.write(json.dumps(student) + "\n")
                 print(f"\n ✅ Birthday list saved to {filename}\n")       
     if not found:
-        print("❌ No birthdays today.🎂")
+        print(f"❌ No birthdays found for today ({today}). 🎂")
     input("\nPress Enter to continue...")
 
 def exit_program():
