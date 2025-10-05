@@ -218,6 +218,60 @@ def view_students():
 
     input(Warning + "\n Press Enter to return to the main menu ...")
 
+def search_student():
+    """ search for a student by roll number / by name """
+    clear_screen()
+    banner("Search Student",Fore.CYAN)
+    print("-" * 50)
+    
+    print(INFO + "1. Search by Roll No ")
+    print(INFO + "2. Search by Name ")
+    search_choice = input("Enter your choice (1-2) :  ").strip()
+
+    if search_choice == "1" :
+        key = "roll_no"
+        search_value = input("Enter Roll Number to search : ").strip()
+    elif search_choice == "2":
+        key = "name"
+        search_value = input("Enter Full Name to search : ").strip()
+    else:
+        print(ERROR + "❌ Invalid choice.")
+        input(WARNING + "Press Enter to return to the main menu...")
+        return
+    if not search_value :
+        print(ERROR + "❌ Input cannot be empty.")
+        input(WARNING + "Press Enter to return to the main menu...")
+        return
+    
+    found = False 
+
+    if os.path.exists(STUDENTS_FILE):
+        with open(STUDENTS_FILE, "r") as ssf:
+            for student in ssf:
+                student = json.loads(line.strip())
+                value = student.get(key, "").strip()
+                if key == "name" :
+                    value = value.lowe()
+                
+                if value == search_value :
+                    found  = True
+                    print(SUCCESS + "\n Student Found: \n")
+                    print(f"Roll Number : {student['roll_no']}")
+                    print(f"Name        : {student['name']}")
+                    print(f"Course      : {student['course']}")
+                    print(f"Year        : {student['year']}")
+                    print(f"Section     : {student['section']}")
+                    print(f"DOB         : {student['dob']}")
+                    print(f"Promise Note: {student['promise_note']}")
+                    break
+    else:
+        print(ERROR + "File not found ")
+    if not found :
+        print(ERROR + "❌ Student not found. ")
+    input(WARNING + "Press Enter to return to the main menu...")
+    return
+    
+    
 def exit_program():
     """Gracefully exit the program."""
     print("\nThank you for using the Student Birthday Management System!")
@@ -257,9 +311,9 @@ def main():
         elif choice == "2" :
             check_birthdays()
         elif choice == "3" :
-            pass
+            view_students()
         elif choice == "4" :
-            pass
+            search_student()
         elif choice == "5" :
             pass
         elif choice == "6" :
