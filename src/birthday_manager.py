@@ -77,9 +77,46 @@ def register_student():
 
     student["section"] = section.upper()
     break
+   
    # --- Date of Birth ---
-   dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
-   student["dob"] = dob
+# --- Date of Birth ---
+while True:
+     dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
+     if not dob:
+          print("❌ Date of Birth cannot be empty. Please try again.")
+          continue
+     # Validate the format: DD-MM-YYYY
+     if len(dob) != 10 or dob[2] != "-" or dob[5] != "-":
+          print("❌ Invalid format. Please use DD-MM-YYYY.") 
+          continue
+     # Extract day, month, and year components
+     day_str, month_str, year_str = dob[:2], dob[3:5], dob[6:]
+     
+     # Ensure all components are numeric/numbers
+     if not (day_str.isdigit() and month_str.isdigit() and year_str.isdigit()):
+          print("❌ Day, month, and year must be numeric.")
+          continue
+     # Convert to integers for validation
+     day, month, year = int(day_str), int(month_str), int(year_str)
+
+     # Validate day range
+     if not (1 <= day <= 31):
+          print("❌ Invalid Day. Must be between 1 and 31.")
+          continue
+     # Validate month range
+     if not (1 <= month <= 12):
+          print("❌ Invalid Month. Must be between 1 and 12.")
+          continue
+     # Validate year range 
+     current_year = datetime.now().year
+     if not (1900 <= year <= current_year):
+          print("❌ Year must be between 1900 and the current year.")
+          continue
+     
+     # Store the validated date of birth
+     student["dob"] = dob
+     break
+   
    # --- promise ---
    promise = input("Enter your promise message : ").strip()
    student["promise"] = promise
