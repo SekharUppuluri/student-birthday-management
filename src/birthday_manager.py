@@ -22,8 +22,14 @@ def register_student():
    print("\n --- Welcome to Registration Section --- \n")
    student = {}
    # --- Roll Number ---
-   roll_no = input("Enter Roll Number : ").strip()
-   student["roll_no"] = roll_no
+   while True:
+       roll_no = input("Enter Roll Number : ").strip()
+       if not roll_no:
+            print("❌ Roll Number cannot be empty. Please try again.")
+       else:
+            student["roll_no"] = roll_no
+            break
+   
    # --- Name ---
    name = input("Enter Name : ").strip()
    student["name"] = name 
