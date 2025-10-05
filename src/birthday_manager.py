@@ -2,7 +2,7 @@
 import json
 import os
 from datetime import datetime
-import sns
+import sys
 
 # external requirements
 
@@ -136,8 +136,10 @@ def register_student():
        student["promise_note"] = promise
    else:
        student["promise_note"] = "Promise Note not given."
-
+    
    # --- Save to file ---
+   with open(STUDENTS_FILE,"a") as adding_record:
+       adding_record.write(json.dumps(student) + "\n")
    print("\n ✅ Student Registered Successfully! \n")
 
 def check_birthdays():
