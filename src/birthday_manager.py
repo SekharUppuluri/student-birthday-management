@@ -49,8 +49,19 @@ def register_student():
         break
    
    # --- Year ---
-   year = input("Enter Year (1/2/3/4) : ").strip()
-   student["year"] = year
+   while True:
+    year = input("Enter Year (1/2/3/4) : ").strip()
+    valid_years = [1,2,3,4,5,6]
+    if not year.isdigit():
+        print("❌ Invalid input. Please enter a number between 1 and 6.")
+        continue
+    year = int(year)
+    if year not in valid_years :
+        print("Year out of range. Please enter a number between 1 and 6.")
+    else:
+        student["year"] = year
+        break
+    
    # --- Section ---
    section = input("Enter Section : ").strip()
    student["section"] = section
