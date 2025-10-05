@@ -24,11 +24,26 @@ def register_student():
    # --- Roll Number ---
    while True:
        roll_no = input("Enter Roll Number : ").strip()
+       duplicate = False
        if not roll_no:
             print("❌ Roll Number cannot be empty. Please try again.")
-       else:
-            student["roll_no"] = roll_no
-            break
+            continue
+       
+       if os.path.exists(STUDENTS_FILE):
+            with open(STUDENTS_FILE,"r") as records:
+                for record in records:
+                    if not record.strip():
+                        continue
+                    student_data = json.loads(record.strip())
+                    if student_data.get("roll_no") == roll_no:
+                        duplicate = True
+                        break
+       if duplicate:
+            print(f"❌ Roll Number '{roll_no}' is already registered. Please use a different one.")
+            continue
+       
+       student["roll_no"] = roll_no
+       break
    
    # --- Name ---
    while True:
@@ -63,7 +78,6 @@ def register_student():
         break
 
    # --- Section ---
-   # --- Section ---
    while True:
        section = input("Enter Section (eg; 01/1/CA01): ").strip()
        if not section:
@@ -77,6 +91,7 @@ def register_student():
            continue
        student["section"] = section.upper()
        break
+   
     # --- Date of Birth ---
    while True:
         dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
@@ -113,9 +128,8 @@ def register_student():
         
         # Store the validated date of birth
         student["dob"] = dob
-        # Store the validated date of birth
-        student["dob"] = dob
         break
+   
    # --- promise ---
    promise = input("Enter your promise message : ").strip()
    if promise:
