@@ -2,7 +2,7 @@
 import json
 import os
 from datetime import datetime
-import sys
+import sns
 
 # external requirements
 
@@ -63,68 +63,68 @@ def register_student():
         break
 
    # --- Section ---
+   # --- Section ---
    while True:
-    section = input("Enter Section (eg; 01/1/CA01): ").strip()
-    if not section:
-        print("❌ Section cannot be empty. Please try again.")
-        continue
-    if not section.isalnum:
-        print("❌ Invalid section. Only letters and numbers allowed (no spaces or symbols).")
-        continue
-    if len(section) > 5 :
-        print("❌ Section name too long. Max 5 characters allowed.")
-        continue
+       section = input("Enter Section (eg; 01/1/CA01): ").strip()
+       if not section:
+           print("❌ Section cannot be empty. Please try again.")
+           continue
+       if not section.isalnum():
+           print("❌ Invalid section. Only letters and numbers allowed (no spaces or symbols).")
+           continue
+       if len(section) > 5:
+           print("❌ Section name too long. Max 5 characters allowed.")
+           continue
+       student["section"] = section.upper()
+       break
+    # --- Date of Birth ---
+   while True:
+        dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
+        if not dob:
+            print("❌ Date of Birth cannot be empty. Please try again.")
+            continue
+        # Validate the format: DD-MM-YYYY
+        if len(dob) != 10 or dob[2] != "-" or dob[5] != "-":
+            print("❌ Invalid format. Please use DD-MM-YYYY.") 
+            continue
+        # Extract day, month, and year components
+        day_str, month_str, year_str = dob[:2], dob[3:5], dob[6:]
+        
+        # Ensure all components are numeric/numbers
+        if not (day_str.isdigit() and month_str.isdigit() and year_str.isdigit()):
+            print("❌ Day, month, and year must be numeric.")
+            continue
+        # Convert to integers for validation
+        day, month, year = int(day_str), int(month_str), int(year_str)
 
-    student["section"] = section.upper()
-    break
-   
-   # --- Date of Birth ---
-# --- Date of Birth ---
-while True:
-     dob = input("Enter Date of Birth (DD-MM-YYYY) : ").strip()
-     if not dob:
-          print("❌ Date of Birth cannot be empty. Please try again.")
-          continue
-     # Validate the format: DD-MM-YYYY
-     if len(dob) != 10 or dob[2] != "-" or dob[5] != "-":
-          print("❌ Invalid format. Please use DD-MM-YYYY.") 
-          continue
-     # Extract day, month, and year components
-     day_str, month_str, year_str = dob[:2], dob[3:5], dob[6:]
-     
-     # Ensure all components are numeric/numbers
-     if not (day_str.isdigit() and month_str.isdigit() and year_str.isdigit()):
-          print("❌ Day, month, and year must be numeric.")
-          continue
-     # Convert to integers for validation
-     day, month, year = int(day_str), int(month_str), int(year_str)
-
-     # Validate day range
-     if not (1 <= day <= 31):
-          print("❌ Invalid Day. Must be between 1 and 31.")
-          continue
-     # Validate month range
-     if not (1 <= month <= 12):
-          print("❌ Invalid Month. Must be between 1 and 12.")
-          continue
-     # Validate year range 
-     current_year = datetime.now().year
-     if not (1900 <= year <= current_year):
-          print("❌ Year must be between 1900 and the current year.")
-          continue
-     
-     # Store the validated date of birth
-     student["dob"] = dob
-     break
-   
+        # Validate day range
+        if not (1 <= day <= 31):
+            print("❌ Invalid Day. Must be between 1 and 31.")
+            continue
+        # Validate month range
+        if not (1 <= month <= 12):
+            print("❌ Invalid Month. Must be between 1 and 12.")
+            continue
+        # Validate year range 
+        current_year = datetime.now().year
+        if not (1900 <= year <= current_year):
+            print("❌ Year must be between 1900 and the current year.")
+            continue
+        
+        # Store the validated date of birth
+        student["dob"] = dob
+        # Store the validated date of birth
+        student["dob"] = dob
+        break
    # --- promise ---
    promise = input("Enter your promise message : ").strip()
-   student["promise"] = promise
+   if promise:
+       student["promise"] = promise
+   else:
+       student["promise"] = "Promise Note not given."
 
    # --- Save to file ---
-   with open(STUDENTS_FILE, "a") as sf :
-      sf.write( json.dumps(student) + "\n" )
-      print("\n ✅ Student Registered Successfully! \n")
+   print("\n ✅ Student Registered Successfully! \n")
 
 def check_birthdays():
     """ Check and display students having birthday today """
