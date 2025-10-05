@@ -200,45 +200,45 @@ def check_birthdays():
 def view_students():
     """ list all registered students"""
     clear_screen()
-    banner("All Students", Fore.Yellow)
+    banner("All Students", Fore.YELLOW)
     print("-" * 50)
 
     if os.path.exists(STUDENTS_FILE):
-        with open(STUDENTS_FILE,"r") as vsf:
+        with open(STUDENTS_FILE, "r") as vsf:
             students = [json.loads(line.strip()) for line in vsf if line.strip()]
         if students:
             print(f"{'Roll No':<10} {'Name':<20} {'Course':<15} {'Year':<6} {'Section':<8} {'DOB':<12}")
             print("-" * 75)
             for student in students:
-                print(f"{student['roll_no']:<10} {student['Name']:<20} {student['Course']:<15} {student['Year']:<6} {student['Section']:<8} {student['DOB']:<12}")
+                print(f"{student['roll_no']:<10} {student['name']:<20} {student['course']:<15} {student['year']:<6} {student['section']:<8} {student['dob']:<12}")
         else:
             print(ERROR + "❌ No students registered yet.")
-    else :
-        print(ERROR + "❌ No students registered yet./file Not Exists ")
+    else:
+        print(ERROR + "❌ No students registered yet or file not exists.")
 
-    input(Warning + "\n Press Enter to return to the main menu ...")
+    input(WARNING + "\n Press Enter to return to the main menu ...")
 
 def search_student():
     """ search for a student by roll number / by name """
     clear_screen()
-    banner("Search Student",Fore.CYAN)
+    banner("Search Student", Fore.CYAN)
     print("-" * 50)
     
     print(INFO + "1. Search by Roll No ")
     print(INFO + "2. Search by Name ")
-    search_choice = input("Enter your choice (1-2) :  ").strip()
+    search_choice = input("Enter your choice (1-2): ").strip()
 
-    if search_choice == "1" :
+    if search_choice == "1":
         key = "roll_no"
-        search_value = input("Enter Roll Number to search : ").strip()
+        search_value = input("Enter Roll Number to search: ").strip()
     elif search_choice == "2":
         key = "name"
-        search_value = input("Enter Full Name to search : ").strip()
+        search_value = input("Enter Full Name to search: ").strip()
     else:
         print(ERROR + "❌ Invalid choice.")
         input(WARNING + "Press Enter to return to the main menu...")
         return
-    if not search_value :
+    if not search_value:
         print(ERROR + "❌ Input cannot be empty.")
         input(WARNING + "Press Enter to return to the main menu...")
         return
@@ -247,15 +247,15 @@ def search_student():
 
     if os.path.exists(STUDENTS_FILE):
         with open(STUDENTS_FILE, "r") as ssf:
-            for student in ssf:
+            for line in ssf:
                 student = json.loads(line.strip())
                 value = student.get(key, "").strip()
-                if key == "name" :
+                if key == "name":
                     value = value.lower()
                 
-                if value == search_value :
-                    found  = True
-                    print(SUCCESS + "\n Student Found: \n")
+                if value == search_value:
+                    found = True
+                    print(SUCCESS + "\nStudent Found:\n")
                     print(f"Roll Number : {student['roll_no']}")
                     print(f"Name        : {student['name']}")
                     print(f"Course      : {student['course']}")
@@ -265,11 +265,13 @@ def search_student():
                     print(f"Promise Note: {student['promise_note']}")
                     break
     else:
-        print(ERROR + "File not found ")
-    if not found :
-        print(ERROR + "❌ Student not found. ")
+        print(ERROR + "File not found.")
+    
+    if not found:
+        print(ERROR + "❌ Student not found.")
     input(WARNING + "Press Enter to return to the main menu...")
     return
+
     
 def edit_student():
     """ Update details of an existing student """
