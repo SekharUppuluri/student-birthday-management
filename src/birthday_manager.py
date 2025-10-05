@@ -251,7 +251,7 @@ def search_student():
                 student = json.loads(line.strip())
                 value = student.get(key, "").strip()
                 if key == "name" :
-                    value = value.lowe()
+                    value = value.lower()
                 
                 if value == search_value :
                     found  = True
@@ -271,7 +271,95 @@ def search_student():
     input(WARNING + "Press Enter to return to the main menu...")
     return
     
+def edit_student():
+    """ Update details of an existing student """
+    clear_screen()
+    banner("Edit Student", Fore.CYAN)
+    print("-" * 50)
     
+    print(INFO + "1. Search by Roll No")
+    print(INFO + "2. Search by Name")
+    search_choice = input("Enter your choice (1-2): ").strip()
+
+    if search_choice == "1":
+        key = "roll_no"
+        search_value = input("Enter Roll Number to search: ").strip()
+    elif search_choice == "2":
+        key = "name"
+        search_value = input("Enter Full Name to search: ").strip()
+    else:
+        print(ERROR + "❌ Invalid choice.")
+        input(WARNING + "Press Enter to return to the main menu...")
+        return
+    
+    if not search_value:
+        print(ERROR + "❌ Input cannot be empty.")
+        input(WARNING + "Press Enter to return to the main menu...")
+        return
+    
+    found = False
+    updated_students = []  # List to store updated student details
+
+    if os.path.exists(STUDENTS_FILE):
+        with open(STUDENTS_FILE, "r") as ssf:
+            for line in ssf:
+                student = json.loads(line.strip())
+                value = student.get(key, "").strip()
+                if key == "name":
+                    value = value.lower()
+                
+                if value == search_value:
+                    found = True
+                    print(SUCCESS + f"\nStudent found: {student['name']} (Roll No: {student['roll_no']})\n")
+                    print("Leave fields blank to keep current value.\n")
+
+                    # update fields
+                    new_roll_no = input(f"Enter new Roll No: current roll_no: {student['roll_no']} : ")
+                    if new_roll_no:
+                        student["roll_no"] = new_roll_no
+
+                    new_name = input(f"Enter new Name: current name: {student['name']} : ")
+                    if new_name:
+                        student["name"] = new_name
+
+                    new_course = input(f"Enter new Course: current Course: {student['course']} : ")
+                    if new_course:
+                        student["course"] = new_course
+
+                    new_year = input(f"Enter new Year: current Year: {student['year']} : ")
+                    if new_year:
+                        student["year"] = new_year
+
+                    new_section = input(f"Enter new Section: current section: {student['section']} : ")
+                    if new_section:
+                        student["section"] = new_section
+
+                    new_dob = input(f"Enter new DOB: current DOB: {student['dob']} : ")
+                    if new_dob:
+                        student["dob"] = new_dob
+
+                    new_promise_note = input(f"Enter new Promise Note: current Promise Note: {student['promise_note']} : ")
+                    if new_promise_note:
+                        student["promise_note"] = new_promise_note
+                    
+                    # Append updated student
+                    updated_students.append(student)
+                else:
+                    # Keep unchanged students
+                    updated_students.append(student)
+    
+        if found:
+            with open(STUDENTS_FILE, "w") as ssf:
+                for student in updated_students:
+                    ssf.write(json.dumps(student) + "\n")
+            print(SUCCESS + "✅ Student details updated successfully!")
+        else:
+            print(ERROR + "❌ Student not found.")
+    else:
+        print(ERROR + "❌ File not found.")
+
+    input(WARNING + "Press Enter to return to the main menu...")
+
 def exit_program():
     """Gracefully exit the program."""
     print("\nThank you for using the Student Birthday Management System!")
@@ -315,7 +403,7 @@ def main():
         elif choice == "4" :
             search_student()
         elif choice == "5" :
-            pass
+            edit_student()
         elif choice == "6" :
             pass
         elif choice == "7" :
