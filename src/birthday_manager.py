@@ -3,6 +3,7 @@ import json
 import os
 from datetime import datetime
 # external requirements
+from pyfiglet import Figlet
 from colorama import Fore, Style, init
 init(autoreset=True)
 
@@ -25,10 +26,16 @@ if not os.path.exists(DATA_DIR):
 
 STUDENTS_FILE = os.path.join( DATA_DIR , "students.txt" )
 # functions
+def banner(text, color=Fore.CYAN, font="small"):
+    """Prints a colored ASCII banner"""
+    f = Figlet(font=font)
+    print(color + f.renderText(text) + RESET)
+
 def register_student():
    """ Register a new student and save to file with validations """
-   print()
-   print(INFO + "\n --- Welcome to Registration Section --- \n")
+   clear_screen()
+   banner("Registration", Fore.GREEN)
+   print("-" * 50)
    student = {}
    # --- Roll Number ---
    while True:
@@ -145,16 +152,22 @@ def register_student():
        student["promise_note"] = promise
    else:
        student["promise_note"] = "Promise Note not given."
+
+   print("-" * 50)
+
     
    # --- Save to file ---
    with open(STUDENTS_FILE,"a") as adding_record:
        adding_record.write(json.dumps(student) + "\n")
    print( SUCCESS + "\n ✅ Student Registered Successfully! \n")
+   input(INFO + "Press Enter to return to the main menu...")
+
 
 def check_birthdays():
     """ Check and display students having birthday today """
-    # clear_screen()
-    print(TITLE +"\n --- Birthday Checker Section --- \n")
+    clear_screen()
+    banner("Birthday Checker", Fore.MAGENTA)
+    print("-" * 50 )
     today = datetime.now().strftime(SHORT_DATE_FORMAT)
     birthday_students = []
     found = False
@@ -181,12 +194,13 @@ def check_birthdays():
                         daily_file.write(json.dumps(student) + "\n")
                 print(f"\n{SUCCESS} ✅ Birthday list saved to {filename}\n")       
     if not found:
-        print(f"{ERROR} ❌ No birthdays found for today ({today}). 🎂")
+        print(f"\n{ERROR} ❌ No birthdays found for today ({today}). 🎂")
     input("\nPress Enter to continue...")
 
 def exit_program():
     """Gracefully exit the program."""
     print("\nThank you for using the Student Birthday Management System!")
+    banner("Goodbye!", Fore.YELLOW)
     print("Exiting the program. Goodbye! 👋\n")
     exit(0)
 
@@ -198,20 +212,18 @@ def invalid_choice():
     print()
     return
 
-# def clear_screen():
-#     """ Clears the console screen """
-#     if os.name == 'nt':  # For Windows
-#         os.system('cls')
-#     else:  # For macOS/Linux
-#         os.system('clear')
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def main():
     while True :
-        print("=" * 47)
-        print(TITLE + "===== Student Birthday Management System =====")
+        banner("Student Birthday Management System", TITLE)
+        print("=" * 50 )
         print(INFO + "1. Register New Student")
         print(INFO + "2. Check Today's Birthdays")
         print(INFO + "3. Exit" + RESET)
+        print("=" * 50)
 
         choice = input("Enter your choice (1-3) : ").strip()
         
