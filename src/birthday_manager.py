@@ -40,8 +40,14 @@ def register_student():
            break
         
    # --- Course ---
-   course = input("Enter Course : ").strip()
-   student["course"] = course 
+   while True:
+    course = input("Enter Course : ").strip()
+    if not course:
+        print("❌ Course cannot be empty. Please try again.")
+    else:
+        student["course"] = course
+        break
+   
    # --- Year ---
    year = input("Enter Year (1/2/3/4) : ").strip()
    student["year"] = year
