@@ -31,8 +31,14 @@ def register_student():
             break
    
    # --- Name ---
-   name = input("Enter Name : ").strip()
-   student["name"] = name 
+   while True:
+       name = input("Enter Name : ").strip()
+       if not name:
+           print("❌ Name cannot be empty. Please try again.")
+       else:
+           student["name"] = name
+           break
+        
    # --- Course ---
    course = input("Enter Course : ").strip()
    student["course"] = course 
