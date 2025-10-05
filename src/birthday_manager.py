@@ -119,9 +119,9 @@ def register_student():
    # --- promise ---
    promise = input("Enter your promise message : ").strip()
    if promise:
-       student["promise"] = promise
+       student["promise_note"] = promise
    else:
-       student["promise"] = "Promise Note not given."
+       student["promise_note"] = "Promise Note not given."
 
    # --- Save to file ---
    print("\n ✅ Student Registered Successfully! \n")
@@ -148,7 +148,7 @@ def check_birthdays():
                 print(f"{'Roll No':<10} {'Name':<20} {'DOB':<15} {'Promise':<30}")
                 print("-" * 75)  # Decorative line for separation
                 for student in birthday_students:
-                    print(f"{student['roll_no']:<10} {student['name']:<20} {student['dob']:<15} {student['promise']:<30}")
+                    print(f"{student['roll_no']:<10} {student['name']:<20} {student['dob']:<15} {student['promise_note']:<30}")
 
                 filename = os.path.join(DATA_DIR, datetime.now().strftime(DATE_FORMAT) + ".txt")
                 with open(filename, "w") as daily_file:
