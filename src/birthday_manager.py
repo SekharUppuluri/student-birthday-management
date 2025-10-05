@@ -2,8 +2,6 @@
 import json
 import os
 from datetime import datetime
-import sys
-
 # external requirements
 
 # constants
@@ -198,6 +196,7 @@ def invalid_choice():
 
 def main():
     while True :
+        print("=" * 47)
         print("===== Student Birthday Management System =====")
         print("1. Register New Student ")
         print("2. Check Today's Birthdays ")
