@@ -1,13 +1,27 @@
-
 # Byte-compiled / cache 
 __pycache__/
-*.pysc
+*.py[cod]
 
-# virtual environments
+# Virtual environments
 .venv/
 env/
+ENV/
 .ENV/
 
-# Mac System files
-.Ds_Store
+# Streamlit config & cache
+.streamlit/
+.streamlit/secrets.toml
 
+# Google service account credentials
+credentials.json
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE-specific
+.vscode/
+.idea/
