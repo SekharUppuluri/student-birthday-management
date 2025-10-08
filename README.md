@@ -147,7 +147,6 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ## 🧑‍💻 Author  
-**Sekhar Uppuluri**  
 [GitHub: @SekharUppuluri](https://github.com/SekharUppuluri)
 
 
