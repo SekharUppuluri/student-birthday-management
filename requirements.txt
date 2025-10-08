@@ -1,4 +1,4 @@
-colorama
-pyfiglet
 gspread
 google-auth
+colorama
+pyfiglet
