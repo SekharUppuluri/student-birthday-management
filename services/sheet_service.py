@@ -20,3 +20,7 @@ def fetch_all_students():
     worksheet = get_worksheet()
     return worksheet.get_all_records()
 
+def add_student_record(student_data : dict ):
+    """ Add a new student record to the sheet """
+    worksheet = get_worksheet()
+    worksheet.append_row(list(student_data.values()))
