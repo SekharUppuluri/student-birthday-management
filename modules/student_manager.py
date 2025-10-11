@@ -10,3 +10,14 @@ def register_student(student):
         print(f" student {student['Name']} added successfully ")
     else:
         print("Failed to add student")
+
+def view_all_students():
+    """ Fetch and display all students """
+    students = fetch_all_students()
+    if not students :
+        print("no students")
+        return
+    print("\n all registered students ")
+    for s in students :
+        print(f"{s['Name']} - {s['DOB']}")
+    print(f"total students : {len(students)}")
