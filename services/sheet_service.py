@@ -8,7 +8,7 @@ from .google_client import get_gspread_client
 
 SPREADSHEET_NAME = "Student Data"
 
-def get_worksheet(sheet_name = "sheet1"):
+def get_worksheet(sheet_name = "Sheet1"):
     """ Open the Google Sheet and return the specified worksheet """
     client = get_gspread_client()
     spreadsheet = client.open(SPREADSHEET_NAME)
