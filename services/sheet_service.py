@@ -14,3 +14,9 @@ def get_worksheet(sheet_name = "sheet1"):
     spreadsheet = client.open(SPREADSHEET_NAME)
     worksheet = spreadsheet.worksheet(sheet_name)
     return worksheet
+
+def fetch_all_students():
+    """ Fetch all student records as a list of dictionaries """
+    worksheet = get_worksheet()
+    return worksheet.get_all_records()
+
