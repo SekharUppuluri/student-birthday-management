@@ -24,3 +24,11 @@ def add_student_record(student_data : dict ):
     """ Add a new student record to the sheet """
     worksheet = get_worksheet()
     worksheet.append_row(list(student_data.values()))
+
+def update_student_record(row_number : int , updated_student_data : dict ):
+    """ Update an existing student record """
+    worksheet = get_worksheet()
+    headers = worksheet.row.values(1)
+    for idx  , key in enumerate( headers  , start = 1):
+        if key in updated_student_data :
+            worksheet.update_cell(row_number  , idx  , updated_student_data[key])
