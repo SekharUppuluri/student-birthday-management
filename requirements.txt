@@ -1,4 +1,5 @@
+streamlit
 gspread
 google-auth
-colorama
-pyfiglet
+google-auth-oauthlib
+
