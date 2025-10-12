@@ -13,7 +13,7 @@ ENV/
 .streamlit/secrets.toml
 
 # Google service account credentials
-credentials/service_account.json
+credentials/
 
 # OS-specific
 .DS_Store
