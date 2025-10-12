@@ -30,3 +30,14 @@ def search_student(roll_no):
         print(f"found {result['Roll No']} - DOB : {result['DOB']}")
     else:
         print("student not found")
+
+def edit_student(roll_no , update_data):
+    """ Edit a student details (by Roll Number...) """
+    students = fetch_all_students()
+    for idx , s in enumerate( students , start = 2):
+        if s['Roll No'] == roll_no:
+            success = update_student_record(idx , update_data )
+            if success:
+                print(f" updated record for {s['Name']} ")
+            return
+    print("student not found")
