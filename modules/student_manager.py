@@ -21,3 +21,12 @@ def view_all_students():
     for s in students :
         print(f"{s['Name']} - {s['DOB']}")
     print(f"total students : {len(students)}")
+
+def search_student(roll_no):
+    """ Finding a student by Roll Number """
+    students = fetch_all_students()
+    result  = next(( s for s in students if s['Roll No'] == roll_no), None )
+    if result:
+        print(f"found {result['Roll No']} - DOB : {result['DOB']}")
+    else:
+        print("student not found")
