@@ -20,18 +20,21 @@ def fetch_all_students():
     worksheet = get_worksheet()
     return worksheet.get_all_records()
 
-def add_student_record(student_data : dict ):
-    """ Add a new student record to the sheet """
+def add_student_record(student_data: dict):
+    """Add a new student record to the sheet in correct column order."""
     worksheet = get_worksheet()
     if not worksheet:
         return False
     try:
-        worksheet.append_row(list(student_data.values()))
+        headers = worksheet.row_values(1)
+        new_row = [student_data.get(h, "") for h in headers]
+        worksheet.append_row(new_row)
         print(f"✅ Added student: {student_data.get('Name', 'Unknown')}")
         return True
     except Exception as e:
         print(f"⚠️ Failed to add student: {e}")
         return False
+
 
 def update_student_record(row_number : int , updated_student_data : dict ):
     """ Update an existing student record """

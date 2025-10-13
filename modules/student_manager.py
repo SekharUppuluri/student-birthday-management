@@ -1,6 +1,8 @@
 """
 Manage student data Operations using Google Sheets as backend
 """
+import streamlit as st
+
 from services.sheet_service import fetch_all_students, add_student_record, update_student_record
 
 def register_student(student):
@@ -15,21 +17,34 @@ def view_all_students():
     """ Fetch and display all students """
     students = fetch_all_students()
     if not students :
-        print("no students")
+        st.warning("no students")
         return
-    print("\n all registered students ")
+    st.write(" all registered students ")
     for s in students :
-        print(f"{s['Name']} - {s['DOB']}")
-    print(f"total students : {len(students)}")
+        st.write(f"{s['Name']} - {s['DOB']}")
+    st.info(f"total students : {len(students)}")
 
 def search_student(roll_no):
-    """ Finding a student by Roll Number """
+    """Finding a student by Roll Number"""
     students = fetch_all_students()
-    result  = next(( s for s in students if s['Roll No'] == roll_no), None )
-    if result:
-        print(f"found {result['Roll No']} - DOB : {result['DOB']}")
-    else:
-        print("student not found")
+    if not students:
+        st.warning("No students found.")
+        return
+
+    roll_no = str(roll_no).strip().lower()
+
+    for s in students:
+        # Normalize roll numbers before comparison
+        sheet_roll = str(s.get("Roll No", "")).strip().lower()
+        if sheet_roll == roll_no:
+            st.success("✅ Student Found!")
+            st.table([s])  # neatly display single student record
+            return  # <-- inside the IF block
+
+    # runs only if no match found
+    st.error(f"❌ Student with Roll No '{roll_no}' not found.")
+
+
 
 def edit_student(roll_no , update_data):
     """ Edit a student details (by Roll Number...) """
@@ -38,6 +53,6 @@ def edit_student(roll_no , update_data):
         if s['Roll No'] == roll_no:
             success = update_student_record(idx , update_data )
             if success:
-                print(f" updated record for {s['Name']} ")
+                st.write(f" updated record for {s['Name']} ")
             return
-    print("student not found")
+    st.warning("student not found")
