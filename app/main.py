@@ -1,9 +1,13 @@
 import streamlit as st
+
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from modules.student_manager import register_student, view_all_students, search_student, edit_student 
+import streamlit as st
+import sys
+import os
  
 
 st.set_page_config(page_title= "Student Birthday Management", layout="wide")
@@ -37,6 +41,13 @@ elif choice == "Register Student":
         }
         register_student(student)
         st.success(f"Student {name} registerd! ")
+
 elif choice == "View Students":
     st.subheader("All Students")
     view_all_students()
+    
+elif choice == "Search Student":
+    st.subheader("Search Student by Roll NUmber")
+    roll_no = st.text_input("Enter ROll Number")
+    if st.button("Search"):
+        search_student(roll_no)
