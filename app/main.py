@@ -1,16 +1,15 @@
 import streamlit as st
-
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from modules.student_manager import register_student, view_all_students, search_student, edit_student 
-import streamlit as st
-import sys
-import os
- 
+from modules.student_manager import register_student, view_all_students, search_student, edit_student
 
-st.set_page_config(page_title= "Student Birthday Management", layout="wide")
+st.set_page_config(
+                    page_title="🎓 Student Birthday Management",
+                    page_icon="🎂",
+                    layout="wide"
+                )
 st.title("🎓 Student Birthday Management System")
 
 menu = ["Home","Register Student","View Students","Search Student","Update Student"]
