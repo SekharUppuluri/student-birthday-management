@@ -2,8 +2,9 @@
 Manage student data Operations using Google Sheets as backend
 """
 import streamlit as st
-
+import pandas as pd
 from services.sheet_service import fetch_all_students, add_student_record, update_student_record
+
 
 def register_student(student):
     """ Adding a new student record to Google Sheet """
@@ -13,16 +14,19 @@ def register_student(student):
     else:
         print("Failed to add student")
 
+
 def view_all_students():
     """ Fetch and display all students """
     students = fetch_all_students()
-    if not students :
-        st.warning("no students")
+    if not students:
+        st.warning("No students found.")
         return
-    st.write(" all registered students ")
-    for s in students :
-        st.write(f"{s['Name']} - {s['DOB']}")
-    st.info(f"total students : {len(students)}")
+    st.write("All registered students:")
+    # Convert to DataFrame for proper table display
+    df = pd.DataFrame(students)
+    st.dataframe(df, hide_index=True)
+    st.info(f"Total students: {len(students)}")
+
 
 def search_student(roll_no):
     """Finding a student by Roll Number"""
@@ -30,19 +34,19 @@ def search_student(roll_no):
     if not students:
         st.warning("No students found.")
         return
-
     roll_no = str(roll_no).strip().lower()
-
+    found = None
     for s in students:
-        # Normalize roll numbers before comparison
         sheet_roll = str(s.get("Roll No", "")).strip().lower()
         if sheet_roll == roll_no:
-            st.success("✅ Student Found!")
-            st.table([s])  # neatly display single student record
-            return  # <-- inside the IF block
-
-    # runs only if no match found
-    st.error(f"❌ Student with Roll No '{roll_no}' not found.")
+            found = s
+            break
+    if found:
+        st.success(f"✅ Student Found: {found['Name']}")
+        st.markdown("### Student Details")
+        st.dataframe(pd.DataFrame([found]), hide_index=True)
+    else:
+        st.error(f"❌ Student with Roll No '{roll_no}' not found.")
 
 
 
