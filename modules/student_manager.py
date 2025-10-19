@@ -23,7 +23,7 @@ def view_all_students():
         return
     st.write("All registered students:")
     # Convert to DataFrame for proper table display
-    df = pd.DataFrame(students)
+    df = pd.DataFrame(students).astype(str)  # 👈 convert all columns to strings
     st.dataframe(df, hide_index=True)
     st.info(f"Total students: {len(students)}")
 
@@ -44,7 +44,8 @@ def search_student(roll_no):
     if found:
         st.success(f"✅ Student Found: {found['Name']}")
         st.markdown("### Student Details")
-        st.dataframe(pd.DataFrame([found]), hide_index=True)
+        df = pd.DataFrame([found]).astype(str)  # 👈 convert before displaying
+        st.dataframe(df, hide_index=True)
     else:
         st.error(f"❌ Student with Roll No '{roll_no}' not found.")
 
