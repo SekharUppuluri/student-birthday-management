@@ -12,11 +12,22 @@ st.set_page_config(
                 )
 st.title("🎓 Student Birthday Management System")
 
-menu = ["Home","Register Student","View Students","Search Student","Update Student"]
+
+menu = ["Home","Register Student","View Students","Search Student"]
 choice = st.sidebar.selectbox("Menu", menu)
 
 if choice == "Home":
     st.write("Welcome: Use the menu to navigate")
+    st.markdown("""
+        ## Available Features:
+        - **Home**
+        - **Register Student**
+        - **View Students**
+        - **Search Student**
+
+        *To navigate between these features, please use the navigation bar at the top-left menu.*
+    """)
+    
 elif choice == "Register Student":
     st.subheader("Register a New Student")
     name = st.text_input("Name")
