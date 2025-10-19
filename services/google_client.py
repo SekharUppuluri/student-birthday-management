@@ -15,7 +15,14 @@ def get_gspread_client():
     """ 
     Initialize and return an authorized gspread client using Streamlit secrets
     """
-    sa_info = st.secrets["google_service_account"]
-    creds = Credentials.from_service_account_info(sa_info, scopes=SCOPES)
-    client = gspread.authorize(creds)
-    return client
+    try:
+        # This works for both local and cloud as long as secrets are properly set up
+        sa_info = st.secrets["google_service_account"]
+        creds = Credentials.from_service_account_info(sa_info, scopes=SCOPES)
+        client = gspread.authorize(creds)
+        return client
+    except Exception as e:
+        st.error("Failed to connect to Google Sheets API")
+        st.error(f"Error details: {str(e)}")
+        st.info("Please check your credentials in .streamlit/secrets.toml (local) or Streamlit Cloud secrets")
+        st.stop()
