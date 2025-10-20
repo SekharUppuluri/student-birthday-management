@@ -8,12 +8,19 @@ from .google_client import get_gspread_client
 
 SPREADSHEET_NAME = "Student Data"
 
-def get_worksheet(sheet_name = "Sheet1"):
-    """ Open the Google Sheet and return the specified worksheet """
-    client = get_gspread_client()
-    spreadsheet = client.open(SPREADSHEET_NAME)
-    worksheet = spreadsheet.worksheet(sheet_name)
-    return worksheet
+def get_worksheet(sheet_name="Sheet1"):
+    """Open the Google Sheet and return the specified worksheet"""
+    try:
+        client = get_gspread_client()
+        spreadsheet = client.open(SPREADSHEET_NAME)
+        worksheet = spreadsheet.worksheet(sheet_name)
+        return worksheet
+    except Exception as e:
+        import streamlit as st
+        st.error("⚠️ Could not connect to Google Sheet. Please verify name & credentials.")
+        st.error(str(e))
+        st.stop()
+
 
 def fetch_all_students():
     """ Fetch all student records as a list of dictionaries """
