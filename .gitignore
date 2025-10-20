@@ -12,10 +12,6 @@ ENV/
 .streamlit/
 .streamlit/secrets.toml
 
-# Google service account credentials
-credentials/
-.streamlit/
-
 # OS-specific
 .DS_Store
 Thumbs.db
