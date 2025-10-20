@@ -1,35 +1,55 @@
 """
 Manage student data Operations using Google Sheets as backend
 """
+import streamlit as st
+import pandas as pd
 from services.sheet_service import fetch_all_students, add_student_record, update_student_record
+
 
 def register_student(student):
     """ Adding a new student record to Google Sheet """
     success = add_student_record(student)
-    if success :
-        print(f" student {student['Name']} added successfully ")
+    if success:
+        st.success(f"🎉 Student '{student['Name']}' added successfully!")
     else:
-        print("Failed to add student")
+        st.error("⚠️ Failed to add student. Please try again.")
+        
 
 def view_all_students():
     """ Fetch and display all students """
     students = fetch_all_students()
-    if not students :
-        print("no students")
+    if not students:
+        st.warning("No students found.")
         return
-    print("\n all registered students ")
-    for s in students :
-        print(f"{s['Name']} - {s['DOB']}")
-    print(f"total students : {len(students)}")
+    st.write("All registered students:")
+    # Convert to DataFrame for proper table display
+    df = pd.DataFrame(students).astype(str)  # 👈 convert all columns to strings
+    st.dataframe(df, hide_index=True)
+    st.info(f"Total students: {len(students)}")
+
 
 def search_student(roll_no):
-    """ Finding a student by Roll Number """
+    """Finding a student by Roll Number"""
     students = fetch_all_students()
-    result  = next(( s for s in students if s['Roll No'] == roll_no), None )
-    if result:
-        print(f"found {result['Roll No']} - DOB : {result['DOB']}")
+    if not students:
+        st.warning("No students found.")
+        return
+    roll_no = str(roll_no).strip().lower()
+    found = None
+    for s in students:
+        sheet_roll = str(s.get("Roll No", "")).strip().lower()
+        if sheet_roll == roll_no:
+            found = s
+            break
+    if found:
+        st.success(f"✅ Student Found: {found['Name']}")
+        st.markdown("### Student Details")
+        df = pd.DataFrame([found]).astype(str)  # 👈 convert before displaying
+        st.dataframe(df, hide_index=True)
     else:
-        print("student not found")
+        st.error(f"❌ Student with Roll No '{roll_no}' not found.")
+
+
 
 def edit_student(roll_no , update_data):
     """ Edit a student details (by Roll Number...) """
@@ -38,6 +58,6 @@ def edit_student(roll_no , update_data):
         if s['Roll No'] == roll_no:
             success = update_student_record(idx , update_data )
             if success:
-                print(f" updated record for {s['Name']} ")
+                st.write(f" updated record for {s['Name']} ")
             return
-    print("student not found")
+    st.warning("student not found")
