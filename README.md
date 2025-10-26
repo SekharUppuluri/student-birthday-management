@@ -36,8 +36,9 @@ This project demonstrates Python fundamentals including conditionals, loops, dic
 ```bash
 student-birthday-management/
 │
-├── data/                   # Data files (students.txt, daily birthday lists)
-├── src/
+├── app/
+│   └── main.py
+├── modules/
 │   └── birthday_manager.py # Core Python code
 ├── .gitignore
 ├── LICENSE
