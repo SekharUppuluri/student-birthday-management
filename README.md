@@ -13,7 +13,7 @@ This project demonstrates Python fundamentals including conditionals, loops, dic
 
 ---
 
-## 🚀 Features (V1 – CLI)
+## 🚀 Features (V3.00 – App)
 
 - Register new student with:
   - Roll No, Name, Course, Year, Section, DOB, Promise Note  
