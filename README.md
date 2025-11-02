@@ -114,13 +114,14 @@ Follow the steps below to run the program and tests on your system:
 
 |   Step       |      macOS/Linux           |       Windows                   |
 |:------------- |:--------------------------|:-------------------------------|
-| **Run program** | `python3 src/birthday_manager.py`      | `python src\birthday_manager.py`             |
+| **Run program** | `streamlit run app/main.py`      | `streamlit run app\main.py`             |
 
-> **Note**: On **Windows**, make sure to use `src\birthday_manager.py` with backslashes for the file path.
+> **Note**: On **Windows**, make sure to use `app\main.py` with backslashes for the file path.
 
 
-## 📸 Screenshots (Planned in v1.1.0)
 <!--
+## 📸 Screenshots (Planned in v1.1.0)
+
 - ✅ Full CLI DEMO
 
 ![FULL CLI ](Screenshots/FULL%20CLI.png)
@@ -136,10 +137,11 @@ Follow the steps below to run the program and tests on your system:
 - ❌ Exit 
 
 ![Exit from program](Screenshots/Exit.png)
--->
+
 Screenshots will be added in the next minor release (v1.1.0).
 
 This version (v1.0.0) focuses on delivering the core CLI functionality.
+-->
 
 
 ### 📜 License  
@@ -148,6 +150,6 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 ## 🧑‍💻 Author  
-[GitHub: @SekharUppuluri](https://github.com/SekharUppuluri)
+GitHub: [@SekharUppuluri](https://github.com/SekharUppuluri)
 
 
